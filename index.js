@@ -1,10 +1,8 @@
-console.log("testing test");
+
+
 function getRandomNumber() {
     return Math.floor(Math.random() * 100) + 1;
 }
-
-let Test_function_variable = getRandomNumber();
-console.log(Test_function_variable);
 
 // This function prompts the player to enter their guess and returns it as an integer
 let getPlayerGuess = () => {
@@ -38,3 +36,23 @@ let checkGuess = function(playerGuess, randomNumber, attempts) {
   }
 
 }
+
+const game = () => {
+  // Generate a random number between 1 and 100
+  alert("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
+  const randomNumber = getRandomNumber();
+  console.log("The random number is: " + randomNumber); // For testing purposes, you can remove this line in production
+  let attempts = 0;
+  let number_guessed = getPlayerGuess();
+
+  while (attempts < 10 && number_guessed !== randomNumber) {
+    attempts++;
+    checkGuess(number_guessed, randomNumber, attempts);
+    if (number_guessed === randomNumber) {
+      break;
+    }
+    number_guessed = getPlayerGuess();
+  }
+
+}
+game();
