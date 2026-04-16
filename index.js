@@ -17,9 +17,8 @@ let getPlayerGuess = () => {
       return;
     } 
   } else if (isNaN(playerGuess) || playerGuess < 1 || playerGuess > 100) {
-    alert("Invalid input! Please enter an integer number between 1 and 100.");
     error = true;
-    return error;
+    return;
   }  
   // return the player's guess as an integer
   return parseInt(playerGuess);
@@ -44,10 +43,11 @@ let checkGuess = function(playerGuess, randomNumber, attempts) {
     alert("Congratulations! You guessed the number in " + attempts + " attempts!");
   } else if (playerGuess < randomNumber) {
     alert("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
-  } else {
+  } else if (playerGuess > randomNumber) {
     alert("Too high! Try again. You have " + (10 - attempts) + " attempts left.");
+  } else {
+    alert("Invalid input! Please enter an integer number between 1 and 100.");
   }
-
 }
 
 const game = () => {
