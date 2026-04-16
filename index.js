@@ -8,6 +8,18 @@ function getRandomNumber() {
 let getPlayerGuess = () => {
   // Prompt the player to enter their guess
   let playerGuess = prompt("Enter your guess as an integer number Between numbers 1 and 100:");
+
+  if (playerGuess === null) {
+    if(confirm("Do you want to exit the game?")){
+      console.log("Thanks for playing! Goodbye!");
+      gameOver = true;
+      return;
+    } 
+  } else if (isNaN(playerGuess) || playerGuess < 1 || playerGuess > 100) {
+    alert("Invalid input! Please enter an integer number between 1 and 100.");
+    error = true;
+    return error;
+  }  
   // return the player's guess as an integer
   return parseInt(playerGuess);
 }
