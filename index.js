@@ -58,7 +58,13 @@ const game = () => {
   let attempts = 0;
   let number_guessed = getPlayerGuess();
 
-  while (attempts < 10 && number_guessed !== randomNumber) {
+  while (attempts < 10 && number_guessed !== randomNumber && !gameOver) {
+
+    if (error) {
+      error = false;
+      continue;
+    }
+
     attempts++;
     checkGuess(number_guessed, randomNumber, attempts);
     if (number_guessed === randomNumber) {
