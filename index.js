@@ -51,10 +51,12 @@ let checkGuess = function(playerGuess, randomNumber, attempts) {
 }
 
 const game = () => {
-  // Generate a random number between 1 and 100
+
+
   alert("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
-  console.log("The random number is: " + randomNumber); // For testing purposes, you can remove this line in production
+
+
   let attempts = 0;
   let number_guessed = getPlayerGuess();
 
@@ -62,10 +64,14 @@ const game = () => {
 
     if (error) {
       error = false;
+      number_guessed = getPlayerGuess();
       continue;
+    }else
+    {
+      attempts++;
     }
 
-    attempts++;
+    
     checkGuess(number_guessed, randomNumber, attempts);
     if (number_guessed === randomNumber) {
       break;
