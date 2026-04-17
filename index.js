@@ -1,12 +1,13 @@
 let gameOver = false;
 let error = false;
 let score = 0;
-function getRandomNumber() {
+
+const getRandomNumber = function () {
     return Math.floor(Math.random() * 100) + 1;
 }
 
 // This function prompts the player to enter their guess and returns it as an integer
-let getPlayerGuess = () => {
+const getPlayerGuess = () => {
   // Prompt the player to enter their guess
   let playerGuess = prompt("Enter your guess as an integer number Between numbers 1 and 100:");
 
@@ -18,6 +19,7 @@ let getPlayerGuess = () => {
     } 
   } else if (isNaN(playerGuess) || playerGuess < 1 || playerGuess > 100) {
     alert("Invalid input! Please enter an integer number between 1 and 100.");
+    console.log("Invalid input! Please enter an integer number between 1 and 100.");
     error = true;
     return;
   }  
@@ -26,7 +28,7 @@ let getPlayerGuess = () => {
 }
 
 // This function checks the player's guess against the random number and provides feedback
-let checkGuess = function(playerGuess, randomNumber, attempts) {
+const checkGuess = function(playerGuess, randomNumber, attempts) {
   
   /*
   * Parameters:
@@ -42,18 +44,23 @@ let checkGuess = function(playerGuess, randomNumber, attempts) {
 
   if (playerGuess === randomNumber) {
     alert("Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + ".");
+    console.log("Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + ".");
     gameOver = true;
   } else if (playerGuess < randomNumber) {
     alert("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
+    console.log("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
   } else if (playerGuess > randomNumber) {
     alert("Too high! Try again. You have " + (10 - attempts) + " attempts left.");
-  } else {
-    alert("Invalid input! Please enter an integer number between 1 and 100.");
-  }
+    console.log("Too high! Try again. You have " + (10 - attempts) + " attempts left.");
+  } 
+  // else {
+  //   alert("Invalid input! Please enter an integer number between 1 and 100.");
+  // }
 }
 
 const game = () => {
   alert("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
+  console.log("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
   let attempts = 0;
 
@@ -71,6 +78,7 @@ const game = () => {
 
   if (attempts >= 10 && !gameOver) {
     alert("Game over! You ran out of attempts. The number was " + randomNumber + ".");
+    console.log("Game over! You ran out of attempts. The number was " + randomNumber + ".");
   }
 }
 
