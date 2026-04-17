@@ -55,7 +55,6 @@ let checkGuess = function(playerGuess, randomNumber, attempts) {
 const game = () => {
   alert("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
-  alert(randomNumber);
   let attempts = 0;
 
   while (attempts < 10 && !gameOver) {
