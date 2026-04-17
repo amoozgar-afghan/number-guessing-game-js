@@ -1,6 +1,6 @@
 let gameOver = false;
 let error = false;
-
+let score = 0;
 function getRandomNumber() {
     return Math.floor(Math.random() * 100) + 1;
 }
@@ -41,7 +41,7 @@ let checkGuess = function(playerGuess, randomNumber, attempts) {
   */
 
   if (playerGuess === randomNumber) {
-    alert("Congratulations! You guessed the number in " + attempts + " attempts!");
+    alert("Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + ".");
     gameOver = true;
   } else if (playerGuess < randomNumber) {
     alert("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
@@ -53,34 +53,26 @@ let checkGuess = function(playerGuess, randomNumber, attempts) {
 }
 
 const game = () => {
-
-
   alert("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
-
-
+  alert(randomNumber);
   let attempts = 0;
-  let number_guessed = getPlayerGuess();
 
-  while (attempts < 10 && number_guessed !== randomNumber && !gameOver) {
+  while (attempts < 10 && !gameOver) {
+    let number_guessed = getPlayerGuess();
 
     if (error) {
       error = false;
-      number_guessed = getPlayerGuess();
       continue;
-    }else
-    {
-      attempts++;
     }
 
-    number_guessed = getPlayerGuess();
+    attempts++;
     checkGuess(number_guessed, randomNumber, attempts);
-    
   }
 
-   if (attempts >= 10 && !gameOver) {
-        alert("Game over! You ran out of attempts. The number was " + randomNumber + ".");
-    }
+  if (attempts >= 10 && !gameOver) {
+    alert("Game over! You ran out of attempts. The number was " + randomNumber + ".");
+  }
 }
 
 
