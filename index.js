@@ -71,6 +71,7 @@ const checkGuess = function(playerGuess, randomNumber, attempts) {
 }
 
 const game = () => {
+  alert("You can Open console by pressing Ctrl+Shift+I shortcut or by clicking the three dots or the menu option -> more options -> developer tools.");
   log("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
   let attempts = 0;
