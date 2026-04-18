@@ -58,15 +58,12 @@ const checkGuess = function(playerGuess, randomNumber, attempts) {
   */
 
   if (playerGuess === randomNumber) {
-    alert("Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + ".");
-    console.log("Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + ".");
+    log("Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + ".");
     gameOver = true;
   } else if (playerGuess < randomNumber) {
-    alert("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
-    console.log("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
+    log("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
   } else if (playerGuess > randomNumber) {
-    alert("Too high! Try again. You have " + (10 - attempts) + " attempts left.");
-    console.log("Too high! Try again. You have " + (10 - attempts) + " attempts left.");
+    log("Too high! Try again. You have " + (10 - attempts) + " attempts left.");
   } 
   // else {
   //   alert("Invalid input! Please enter an integer number between 1 and 100.");
