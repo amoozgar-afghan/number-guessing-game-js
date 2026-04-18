@@ -4,7 +4,7 @@ const log = (msg) => {
 };
 
 const getRandomNumber = function () {
-    return Math.floor(Math.random() * 100) + 1;
+  return Math.floor(Math.random() * 100) + 1;
 }
 
 const getPlayerGuess = () => {
@@ -57,7 +57,6 @@ const game = () => {
   alert("You can Open console by pressing Ctrl+Shift+I shortcut or by clicking the three dots or the menu option -> more options -> developer tools.");
   log("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
-  console.log(randomNumber)
   let attempts = 0;
 
   while (attempts < 10) {
