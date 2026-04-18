@@ -1,6 +1,11 @@
 let gameOver = false;
-let error = false;
-let score = 0;
+// let error = false;
+// let score = 0;
+
+const log = (msg) => {
+  alert(msg);
+  console.log(msg);
+};
 
 const getRandomNumber = function () {
     return Math.floor(Math.random() * 100) + 1;
@@ -15,16 +20,26 @@ const getPlayerGuess = () => {
     if(confirm("Do you want to exit the game?")){
       console.log("Thanks for playing! Goodbye!");
       gameOver = true;
-      return;
+      return "QUIT";
     } 
-  } else if (isNaN(playerGuess) || playerGuess < 1 || playerGuess > 100) {
-    alert("Invalid input! Please enter an integer number between 1 and 100.");
-    console.log("Invalid input! Please enter an integer number between 1 and 100.");
-    error = true;
-    return;
+    return "RETRY"; 
+  } 
+  
+  if (playerGuess.trim() === "" || isNaN(playerGuess)) {
+    log("Invalid input! Please enter a whole number between 1 and 100.");
+    return "RETRY";
   }  
+
+  const parsed = Number(playerGuess);
+
+  // Reject floats explicitly
+  if (!Number.isInteger(parsed) || parsed < 1 || parsed > 100) {
+    log("Invalid input! Please enter a whole number between 1 and 100.");
+    return "RETRY";
+  }
+
   // return the player's guess as an integer
-  return parseInt(playerGuess);
+  return parsed;
 }
 
 // This function checks the player's guess against the random number and provides feedback
@@ -59,16 +74,14 @@ const checkGuess = function(playerGuess, randomNumber, attempts) {
 }
 
 const game = () => {
-  alert("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
-  console.log("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
+  log("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
   let attempts = 0;
 
   while (attempts < 10 && !gameOver) {
-    let number_guessed = getPlayerGuess();
+    const number_guessed = getPlayerGuess();
 
-    if (error) {
-      error = false;
+    if (number_guessed === "QUIT" || number_guessed === "RETRY") {
       continue;
     }
 
@@ -77,8 +90,7 @@ const game = () => {
   }
 
   if (attempts >= 10 && !gameOver) {
-    alert("Game over! You ran out of attempts. The number was " + randomNumber + ".");
-    console.log("Game over! You ran out of attempts. The number was " + randomNumber + ".");
+    log("Game over! You ran out of attempts. The number was " + randomNumber + ".");
   }
 }
 
