@@ -1,5 +1,3 @@
-let gameOver = false;
-
 const log = (msg) => {
   alert(msg);
   console.log(msg);
@@ -16,7 +14,6 @@ const getPlayerGuess = () => {
   if (playerGuess === null) {
     if(confirm("Do you want to exit the game?")){
       console.log("Thanks for playing! Goodbye!");
-      gameOver = true;
       return "QUIT";
     } 
     return "RETRY"; 
@@ -47,12 +44,11 @@ const checkGuess = function(playerGuess, randomNumber, attempts) {
   
   
   if (playerGuess === randomNumber) {
-    log("Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + ".");
-    gameOver = true;
+    return "Congratulations! You guessed the number in " + attempts + " attempts!" + " Your score is " + (11-attempts)*10 + " out of 100.";
   } else if (playerGuess < randomNumber) {
-    log("Too low! Try again. You have " + (10 - attempts) + " attempts left.");
+    return "Too low! Try again. You have " + (10 - attempts) + " attempts left.";
   } else if (playerGuess > randomNumber) {
-    log("Too high! Try again. You have " + (10 - attempts) + " attempts left.");
+    return "Too high! Try again. You have " + (10 - attempts) + " attempts left.";
   } 
   
 }
@@ -61,20 +57,30 @@ const game = () => {
   alert("You can Open console by pressing Ctrl+Shift+I shortcut or by clicking the three dots or the menu option -> more options -> developer tools.");
   log("Welcome to the Number Guessing Game! You have 10 attempts to guess the number between 1 and 100.");
   const randomNumber = getRandomNumber();
+  console.log(randomNumber)
   let attempts = 0;
 
-  while (attempts < 10 && !gameOver) {
+  while (attempts < 10) {
     const number_guessed = getPlayerGuess();
 
-    if (number_guessed === "QUIT" || number_guessed === "RETRY") {
+    if (number_guessed === "QUIT") {
+      break;
+    } else if (number_guessed === "RETRY") { 
       continue;
     }
 
     attempts++;
-    checkGuess(number_guessed, randomNumber, attempts);
+    const guessResult = checkGuess(number_guessed, randomNumber, attempts);
+    
+    if(guessResult.includes("Congratulations!")) {
+      log(guessResult);
+      return;
+    } 
+
+    log(guessResult);
   }
 
-  if (attempts >= 10 && !gameOver) {
+  if (attempts >= 10) {
     log("Game over! You ran out of attempts. The number was " + randomNumber + ".");
   }
 }
